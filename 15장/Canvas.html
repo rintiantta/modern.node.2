@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="/farbtastic.css" />
+    <link rel="stylesheet" href="/css/ui-lightness/jquery-ui-1.8.16.custom.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="/js/jquery-ui-1.8.16.custom.min.js "></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/farbtastic.js"></script>
+    <script>
+        // Point 생성자 함수를 생성합니다.
+        function Point(event, target) {
+            this.x = event.pageX - $(target).position().left;
+            this.y = event.pageY - $(target).position().top;
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            // Canvas 객체를 추출합니다.
+            var canvas = document.getElementById('canvas');
+            var context = canvas.getContext('2d');
+
+            // 변수를 선언합니다.
+            var width = 5;
+            var color = '#000000';
+            var isDown = false;
+            var newPoint, oldPoint;
+
+            // 이벤트를 연결합니다.
+            canvas.onmousedown = function (event) {
+                isDown = true;
+                oldPoint = new Point(event, this);
+            };
+            canvas.onmouseup = function () { isDown = false; };
+            canvas.onmousemove = function (event) {
+                if (isDown) {
+                    newPoint = new Point(event, this);
+
+                    socket.emit('draw', {
+                        width: width,
+                        color: color,
+                        x1: oldPoint.x,
+                        y1: oldPoint.y,
+                        x2: newPoint.x,
+                        y2: newPoint.y
+                    });
+
+                    oldPoint = newPoint;
+                }
+            };
+
+            // 소켓 이벤트를 연결합니다.
+            var socket = io.connect();
+            socket.emit('join', '<%= room %>');
+            socket.on('line', function (data) {
+                context.lineWidth = data.width;
+                context.strokeStyle = data.color;
+                context.beginPath();
+                context.moveTo(data.x1, data.y1);
+                context.lineTo(data.x2, data.y2);
+                context.stroke();
+            });
+
+            // UI를 구성합니다.
+            $('#colorpicker').farbtastic(function (data) {
+                color = data;
+            });
+
+            $('#slider').slider({
+                max: 20, min: 1,
+                value: 5,
+                change: function (event, ui) {
+                    width = ui.value;
+                }
+            });
+        });
+    </script>
+    <script>
+    </script>
+</head>
+<body>
+    <table border="10">
+        <tr>
+            <td rowspan="3">
+                <!-- 캔버스 -->
+                <canvas id="canvas" width="600" height="400"></canvas>
+            </td>
+            <td height="200">
+                <!-- 색상 선택기 -->
+                <div id="colorpicker"></div>
+            </td>
+        </tr>
+        <tr>
+            <td height="25">
+                <!-- 슬라이더: 두께 선택 -->
+                <div id="slider"></div>
+            </td>
+        </tr>
+        <tr>
+            <td style="background: orange;"></td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>List Page</title>
+</head>
+<body>
+    <h1>List Page</h1>
+    <a href="/insert">INSERT DATA</a>
+    <hr />
+    <table width="100%" border="1">
+        <tr>
+            <th>DELETE</th>
+            <th>EDIT</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Model Number</th>
+            <th>Series</th>
+        </tr>
+        <% data.forEach(function (item, index) { %>
+        <tr>
+            <td><a href="/delete/<%= item.id %>">DELETE</a></td>
+            <td><a href="/edit/<%= item.id %>">EDIT</a></td>
+            <td><%= item.id %></td>
+            <td><%= item.name %></td>
+            <td><%= item.modelnumber %></td>
+            <td><%= item.series %></td>
+        </tr>
+        <% }); %>
+    </table>
+</body>
+</html>

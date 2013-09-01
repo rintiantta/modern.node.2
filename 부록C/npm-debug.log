@@ -1,0 +1,33 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files (x86)\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'init' ]
+2 info using npm@1.2.32
+3 info using node@v0.10.12
+4 verbose node symlink C:\Program Files (x86)\nodejs\\node.exe
+5 verbose read json C:\Users\Insung\Documents\GitHub\modern.node.2\부록C\package.json
+6 warn package.json 부록C@0.0.0 No repository field.
+7 warn package.json 부록C@0.0.0 No readme data.
+8 silly package data undefined
+9 info init written successfully
+10 error Error: Invalid name: "부록C"
+10 error     at ensureValidName (C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\read-package-json\node_modules\normalize-package-data\lib\fixer.js:179:15)
+10 error     at Object.module.exports.fixNameField (C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\read-package-json\node_modules\normalize-package-data\lib\fixer.js:104:5)
+10 error     at C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\read-package-json\node_modules\normalize-package-data\lib\normalize.js:28:38
+10 error     at Array.forEach (native)
+10 error     at normalize (C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\read-package-json\node_modules\normalize-package-data\lib\normalize.js:27:15)
+10 error     at final (C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\read-package-json\read-json.js:304:33)
+10 error     at then (C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\read-package-json\read-json.js:118:48)
+10 error     at C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\read-package-json\read-json.js:278:48
+10 error     at fs.js:207:20
+10 error     at Object.oncomplete (fs.js:107:15)
+11 error If you need help, you may report this log at:
+11 error     <http://github.com/isaacs/npm/issues>
+11 error or email it to:
+11 error     <npm-@googlegroups.com>
+12 error System Windows_NT 6.2.9200
+13 error command "C:\\Program Files (x86)\\nodejs\\\\node.exe" "C:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "init"
+14 error cwd C:\Users\Insung\Documents\GitHub\modern.node.2\부록C
+15 error node -v v0.10.12
+16 error npm -v 1.2.32
+17 verbose exit [ 1, true ]

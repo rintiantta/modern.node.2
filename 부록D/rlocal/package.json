@@ -1,0 +1,15 @@
+{
+  "name": "rlocal",
+  "description": "Local Module Test",
+  "version": "0.0.1",
+  "author": {
+    "name": "RintIanTta"
+  },
+  "main": "local.js",
+  "engines": {
+    "node": "*"
+  },
+  "_id": "rlocal@0.0.1",
+  "readme": "ERROR: No README.md file found!",
+  "_from": "rlocal@"
+}

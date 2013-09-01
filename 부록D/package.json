@@ -1,0 +1,15 @@
+{
+    "name": "test",
+    "version": "0.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "node index.js"
+    },
+    "author": "rintiantta",
+    "license": "BSD",
+    "dependencies": {
+        "socket.io": "*", // socket.io 모듈의 최신 버전
+        "express": "3.2.4" // express 모듈의 3.2.4 버전
+    }
+}

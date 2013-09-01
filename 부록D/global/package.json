@@ -1,0 +1,16 @@
+{
+  "name": "tmm",
+  "description": "TeAm Module Manager",
+  "version": "0.0.1",
+  "author": {
+    "name": "AAkAha RintIanTta"
+  },
+  "dependencies": { },
+  "bin": {
+    "tmm": "./tmm"
+  },
+  "engines": {
+    "node": "*"
+  }
+}
+

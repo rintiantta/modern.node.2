@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('a').click(function () {
+                // 변수를 선언합니다.
+                var socket = io.connect();
+                var name = $('#textinput').val();
+
+                socket.emit('join', $('#textinput').val());
+
+                // 소켓 이벤트를 연결합니다.
+                socket.on('receive', function (data) {
+                    // 변수를 선언합니다.
+                    var latitude = data.latitude;
+                    var longitude = data.longitude;
+
+                    // 문서 객체를 추가합니다.
+                    var output = '';
+                    output += '<h3>latitude: ' + latitude + '</h3>';
+                    output += '<h3>longitude: ' + longitude + '</h3>';
+                    output += '<p>' + data.date + '</p>';
+                    $('<li></li>').append(output).prependTo('#listview');
+
+                    // 문서 객체 개수 제한합니다.
+                    var content = $('#content');
+                    if (content.children().length > 7) {
+                        content.children().last().remove();
+                    }
+
+                    // 리스트뷰를 새로고침합니다.
+                    $('#listview').listview('refresh');
+                });
+
+                // 위치 추적을 시작합니다.
+                navigator.geolocation.watchPosition(function (position) {
+                    // 데이터를 전송합니다.
+                    socket.emit('location', {
+                        name: name,
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude
+                    });
+                }, function (error) {
+                    // 위치를 가져오는데 실패할 경우
+                    alert(error.message)
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- 아이디 등록 페이지 -->
+    <div data-role="page">
+        <div data-role="header">
+            <h1>Location Tracker</h1>
+        </div>
+        <div data-role="content">
+            <div data-role="fieldcontain">
+                <label for="textinput">Name</label>
+                <input type="text" id="textinput" />
+            </div>
+            <a href="#tracker" data-role="button">Start Track</a>
+        </div>
+    </div>
+
+    <!-- 위치 추적 페이지 -->
+    <div data-role="page" id="tracker">
+        <div data-role="header">
+            <h1>Location Tracker</h1>
+        </div>
+        <div data-role="content">
+            <ul id="listview" data-role="listview" data-inset="true">
+            
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

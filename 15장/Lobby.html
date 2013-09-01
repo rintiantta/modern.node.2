@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Lobby Page</title>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Ajax를 수행합니다.
+            $.getJSON('/room', function (data) {
+                // 반복을 수행합니다.
+                $.each(data, function (index, item) {
+                    // 문서 객체를 추가합니다.
+                    $('<button></button>').attr({
+                        'data-room': item
+                    }).text('Room Number: ' + item).button().appendTo('#container');
+                });
+            });
+
+            // Socket 처리를 수행합니다.
+            var socket = io.connect();
+            socket.on('create_room', function (data) {
+                // 문서 객체를 추가합니다.
+                $('<button></button>').attr({
+                    'data-room': data
+                }).text('Room Number: ' + data).appendTo('#container');
+            });
+
+            // 이벤트를 연결합니다.
+            $(document).on('#container > button', 'click', function () {
+                // 변수를 선언합니다.
+                var room = $(this).attr('data-room');
+
+                // 페이지를 이동합니다.
+                location = '/canvas/' + room;
+            });
+
+            $('body > button').click(function () {
+                // 변수를 선언합니다.
+                var room = $('#room').val();
+
+                // 소켓 이벤트를 발생시킵니다.
+                socket.emit('create_room', room);
+
+                // 페이지를 이동합니다.
+                location = '/canvas/' + room;
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Rint Real Time Canvas</h1>
+    <p>Connect Web Server With Socket.io</p>
+    <span>ROOM: </span>
+    <input id="room" />
+    <button>CREATE ROOM</button>
+    <hr />
+    <div id="container">
+
+    </div>
+</body>
+</html>
