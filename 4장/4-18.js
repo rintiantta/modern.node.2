@@ -11,7 +11,7 @@ fs.readFile('textfile.txt', 'utf8', function (error, data) {
 });
 
 // 파일을 씁니다.
-fs.writeFile('textfile.txt', 'utf8', function (error) {
+fs.writeFile('textfile.txt', 'Hello World .. !', 'utf8', function (error) {
     if (error) {
         console.log(error);
     } else {
