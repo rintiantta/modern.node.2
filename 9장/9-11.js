@@ -46,4 +46,4 @@ app.get('/delete/:id', function (request, response) {
 app.get('/insert', function (request, response) { });
 app.post('insert', function (request, response) { });
 app.get('/edit/:id', function (request, response) { });
-app.post('/edit', function (request, response) { });
+app.post('/edit/:id', function (request, response) { });
