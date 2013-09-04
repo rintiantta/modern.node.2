@@ -37,7 +37,7 @@ app.get('/', function (request, response) {
 
 app.get('/delete/:id', function (request, response) {
     // 데이터베이스 쿼리를 실행합니다.
-    client.query('DELETE FROM products WHERE id=?', [request.params.id], function () {
+    client.query('DELETE FROM products WHERE id=?', [request.param('id')], function () {
         // 응답합니다.
         response.redirect('/');
     });
