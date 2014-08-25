@@ -14,6 +14,7 @@ var client = mysql.createConnection({
 
 // 서버를 생성합니다.
 var app = express();
+app.use(app.bodyParser());
 app.use(app.router);
 
 // 서버를 실행합니다.
@@ -44,6 +45,6 @@ app.get('/delete/:id', function (request, response) {
 });
 
 app.get('/insert', function (request, response) { });
-app.post('insert', function (request, response) { });
+app.post('/insert', function (request, response) { });
 app.get('/edit/:id', function (request, response) { });
 app.post('/edit/:id', function (request, response) { });
