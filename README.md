@@ -50,3 +50,24 @@ express 모듈이 업데이트 되었는데 믹서기로 달달 갈았군요 '�
 `setCookie 페이지에 접속하면 string 쿠키와 join 쿠키를 생성합니다.`->`setCookie 페이지에 접속하면 string 쿠키와 json 쿠키를 생성합니다.`
 
 ###178페이지 - 큐님 발견!(1쇄)
+
+## 9장 예제
+
+9장 예제의 다음 코드를 모두
+```javascript
+app.post('insert', function (request, response) {
+```
+다음 코드로 변경해주세요 @_@ .... 
+```javascript
+app.post('/insert', function (request, response) {
+```
+추가로 bodyParser 미들웨어가 추가가 안 되어있답니다.
+```javascript
+app.use(app.router);
+```
+코드 위에
+```javascript
+app.use(app.bodyParser());
+app.use(app.router);
+```
+를 추가해주세요 'ㅂ'
