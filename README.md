@@ -10,6 +10,10 @@ express 모듈이 업데이트 되었는데 믹서기로 달달 갈았군요 '�
 + [http://rintiantta.blog.me/40207854837](http://rintiantta.blog.me/40207854837)
 
 ##오탈자
+
+###60페이지 - m-sungamyang님 발견!(2쇄)
+module 폴더가 아니라 node_modules 폴더에서 모듈을 찾습니다.
+
 ###78페이지 - synack님 발견!(1쇄)
 두 번째 문단에 `readFile() 메서드 또는 writeFile() 메서드에 try catch 구문 처리를 합니다.`를
 `readFileSync() 메서드 또는 writeFileSync() 메서드에 try catch 구문 처리를 합니다.`로 변경합니다!
