@@ -35,7 +35,7 @@
 
             // 초기 위치를 생성합니다.
             $.getJSON('/ShowData', { name: name }, function (data) {
-                $.each(fata, function (index, item) {
+                $.each(data, function (index, item) {
                     setMarker(item.latitude, item.longitude);
                 });
             });
